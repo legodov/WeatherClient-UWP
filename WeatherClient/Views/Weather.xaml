@@ -1,0 +1,104 @@
+﻿<UserControl
+    x:Class="WeatherClient.Views.Weather"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WeatherClient.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:m="using:WeatherClient.Models"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Fill="{StaticResource TealBrush}" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="{x:Bind ViewModel.Title}"
+            x:Name="PageTitle"
+            Margin="18"
+            TextAlignment="Center"
+            Style="{StaticResource PageTitle}"
+            Grid.Row="0"
+            Grid.Column="0"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBox Text="{x:Bind ViewModel.City, Mode=TwoWay}"
+                Margin="18"
+                TextAlignment="Left"
+                PlaceholderText="Input city"
+                Grid.Row="0"
+                Grid.Column="0"/>
+            <ComboBox ItemsSource="{x:Bind ViewModel.CountDaysList}"
+                SelectedItem="{x:Bind ViewModel.CountDays}"
+                SelectedValue="{x:Bind ViewModel.CountDays, Mode=TwoWay}"     
+                Foreground="Black"
+                Margin="18"
+                Grid.Row="0"
+                Grid.Column="0"/>
+            <Button Content="OK"
+                Click="{x:Bind ViewModel.GetWeatherAsync}"
+                HorizontalAlignment="Stretch"
+                Foreground="Black"
+                Margin="18"
+                Grid.Row="0"
+                Grid.Column="0"/>
+        </StackPanel>
+        <ListView Grid.Row="2" Grid.Column="0" ItemsSource="{x:Bind ViewModel.Forecast}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:ReducedForecastPerDay">
+                    <Grid Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="7*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center">
+                            <TextBlock Text="Time" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Morning, °C" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Day, °C" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Evening, °C" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Night, °C" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Rain" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Pressure, hpa" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Humidity, %" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Wind speed, m/s" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Wind direction, °" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="Cloudiness, %" Style="{StaticResource Cell}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            HorizontalAlignment="Center">
+                            <TextBlock Text="{x:Bind Time}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind MorningTemp}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind DayTemp}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind EveningTemp}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind NightTemp}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind Rain}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind Pressure}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind Humidity}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind WindSpeed}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind WindDirection}" Style="{StaticResource Cell}"/>
+                            <TextBlock Text="{x:Bind Clouds}" Style="{StaticResource Cell}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>
