@@ -84,7 +84,7 @@
                             Grid.Column="0"
                             Grid.Row="2"
                             HorizontalAlignment="Center">
-                            <TextBlock Text="{x:Bind Time}" Style="{StaticResource Cell}"/>
+
                             <TextBlock Text="{x:Bind MorningTemp}" Style="{StaticResource Cell}"/>
                             <TextBlock Text="{x:Bind DayTemp}" Style="{StaticResource Cell}"/>
                             <TextBlock Text="{x:Bind EveningTemp}" Style="{StaticResource Cell}"/>

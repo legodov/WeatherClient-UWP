@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateFormatConverter.cs" />
+    <Compile Include="Converters\TimeConverter.cs" />
+    <Compile Include="Converters\WeatherDataConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -106,8 +109,6 @@
     <Compile Include="Models\Temperatures.cs" />
     <Compile Include="Models\WeatherData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Converters\TimeConverter.cs" />
-    <Compile Include="Services\Converters\WeatherDataConverter.cs" />
     <Compile Include="Services\IWeatherService.cs" />
     <Compile Include="Services\WeatherError.cs" />
     <Compile Include="Services\WeatherException.cs" />
@@ -133,6 +134,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="weatherConfig.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

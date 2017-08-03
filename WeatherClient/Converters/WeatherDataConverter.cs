@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WeatherClient.Models;
 
-namespace WeatherClient.Services.Converters
+namespace WeatherClient.Converters
 {
     public static class WeatherDataConverter
     {
@@ -9,7 +9,7 @@ namespace WeatherClient.Services.Converters
         {
             return new ReducedForecastPerDay
             {
-                Time = TimeConverter.ConvertFromEpochToHuman(forecastPerDay.Time).ToString("MM/dd/yyyy"),
+                Time = TimeConverter.ConvertFromEpochToHuman(forecastPerDay.Time),
                 DayTemp = forecastPerDay.Temperatures.Day,
                 NightTemp = forecastPerDay.Temperatures.Night,
                 EveningTemp = forecastPerDay.Temperatures.Evening,
@@ -26,7 +26,7 @@ namespace WeatherClient.Services.Converters
         {
             var list = new List<ReducedForecastPerDay>();
             foreach (var forecastPerDay in weatherData.Forecast)
-                list.Add(WeatherDataConverter.GetReducedForecastPerDay(forecastPerDay));
+                list.Add(GetReducedForecastPerDay(forecastPerDay));
             return list;
         }
     }

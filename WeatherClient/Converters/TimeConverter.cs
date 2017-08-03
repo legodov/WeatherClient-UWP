@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WeatherClient.Services.Converters
+namespace WeatherClient.Converters
 {
     public static class TimeConverter
     {

@@ -340,6 +340,9 @@
     <AppxPackagedFile Include="D:\Binary Academy\UWP\WeatherClient\WeatherClient\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Binary Academy\UWP\WeatherClient\WeatherClient\weatherConfig.xml">
+      <PackagePath>weatherConfig.xml</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Binary Academy\UWP\WeatherClient\WeatherClient\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>

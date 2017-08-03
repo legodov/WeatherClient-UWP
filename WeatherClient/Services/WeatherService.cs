@@ -2,25 +2,28 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Linq;
 using WeatherClient.Models;
+using Windows.Storage;
 
 namespace WeatherClient.Services
 {
     public class WeatherService : IWeatherService
     {
         private static HttpClient _client;
-        private static int _minCountDays;
-        private static int _maxCountDays;
-        private const string apiUrl = "http://localhost:57339/api/Weather/GetWeatherAsync/";
+        private static readonly int _minCountDays;
+        private static readonly int _maxCountDays;
+        private static readonly string _configFilePath;
 
         static WeatherService()
         {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
             _minCountDays = 1;
             _maxCountDays = 17;
+            _configFilePath = "./weatherConfig.xml";
         }
 
         public int MinCountDays
@@ -48,7 +51,17 @@ namespace WeatherClient.Services
         }
         private string GetUrl(string cityName, int countDays)
         {
+            var apiUrl = GetUrlFromFile();
             return string.Format(apiUrl + cityName + "/" + countDays);
+        }
+        private string GetUrlFromFile()
+        {
+            StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            XDocument config = XDocument.Load(installedLocation.Path + _configFilePath);
+            return config.Descendants("configSection")
+                         .Where(p => p.FirstAttribute.Name == "name" &&
+                                     p.FirstAttribute.Value == "binaryWeatherApiUrl")
+                         .SingleOrDefault().Value;
         }
     }
 }

@@ -4,7 +4,7 @@ namespace WeatherClient.Models
 {
     public class ReducedForecastPerDay
     {
-        public string Time { get; set; } //time of data forecasted
+        public DateTime Time { get; set; } //time of data forecasted
         public double DayTemp { get; set; } //day temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
         public double NightTemp { get; set; } //night temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
         public double EveningTemp { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using WeatherClient.Models;
 using WeatherClient.Services;
-using WeatherClient.Services.Converters;
+using WeatherClient.Converters;
 using Windows.UI.Popups;
 
 namespace WeatherClient.ViewModels
@@ -28,7 +28,8 @@ namespace WeatherClient.ViewModels
         {
             if (string.IsNullOrEmpty(City) || string.IsNullOrEmpty(CountDays))
             {
-
+                var dialog = new MessageDialog("Input field 'City name' or 'Count days' not found", "Incorrect input");
+                await dialog.ShowAsync();
             }
             else
             {
